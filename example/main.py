@@ -1,10 +1,3 @@
-### Telegram bot mini
-
-Super minimalistic library to make telegram bot
-
-#### Usage example:
-
-```
 import logging
 
 from flask import Flask, request
@@ -19,7 +12,7 @@ bot_api = TelegramBotApi('123456789:ABCDEFGH123456-12345678912345678912')
 bot = Bot(bot_api)
 
 
-@app.route(f'/{WEBHOOK_TOKEN}', methods=['POST'])
+@app.route(f'/tg/{WEBHOOK_TOKEN}', methods=['POST'])
 def telegram_webhook():
     content = request.get_json()
     bot.handle_update(content)
@@ -62,14 +55,3 @@ bot.generate_and_add_help_command('Available commands:', '/help - shows this mes
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
-```
-
-See example folder.
-
-#### Register webhook:
-
-Register webhook
-
-```
-curl -X POST -H "Content-Type: application/json" -d '{"url": "{webhook_url}", "max_connections": 3, "allowed_updates": [“message”]}' 'https://api.telegram.org/bot{TELEGRAM_API_KEY}/setWebhook'
-```
