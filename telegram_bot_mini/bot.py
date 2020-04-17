@@ -51,14 +51,13 @@ class Bot:
             if self._error_callback is not None:
                 self._error_callback(self._api, update, ex)
 
-    def generate_and_add_help_command(self):
-        HELP_TEXT = '/help - выводит это меню'
+    def generate_and_add_help_command(self, message_header, help_for_help):
         all_helps = '\n\t'.join(h.help for h in self.handlers if isinstance(h, CommandHandler) and h.help)
-        message = f'Доступные команды:\n\t{HELP_TEXT}\n\t{all_helps}'
+        message = f'{message_header}\n\t{help_for_help}\n\t{all_helps}'
 
         def help_callback(api: TelegramBotApi, update):
             api.send_message(update['message']['chat']['id'], message)
-        self.add_handler(CommandHandler('/help', help_callback, HELP_TEXT))
+        self.add_handler(CommandHandler('/help', help_callback, help_for_help))
 
     def command(self, name, help):
         """Decorator that creates and adds CommandHandler"""
