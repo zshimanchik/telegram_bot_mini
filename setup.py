@@ -10,7 +10,7 @@ with open('readme.md') as f:
 
 setup(
     name='telegram_bot_mini',
-    version='1.0',
+    version='1.1.0',
     description='Mini library to work with telegram bot api',
     long_description=long_description,
     keywords='telegram bot api sdk',
